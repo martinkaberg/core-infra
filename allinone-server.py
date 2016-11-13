@@ -42,6 +42,22 @@ db_stack = t.add_parameter(Parameter(
     Description="Db stack name"
 ))
 
+security_group_web = t.add_resource(ec2.SecurityGroup(
+    "SecurityGroupWeb",
+    GroupDescription=Sub("${AWS::StackName} port 80 to the world"),
+     SecurityGroupIngress=[
+        ec2.SecurityGroupRule(
+            FromPort=80,
+            ToPort=80,
+            IpProtocol="tcp",
+            CidrIp="0.0.0.0/0"
+        )
+    ],
+    VpcId=ImportValue(
+        Sub("${NetworkStack}-Vpc")
+    ),
+))
+
 role = t.add_resource(iam.Role(
     "Role",
     AssumeRolePolicyDocument=Policy(
