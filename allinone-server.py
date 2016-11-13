@@ -55,6 +55,9 @@ role = t.add_resource(iam.Role(
         ]
     ),
     Policies=[
+    ],
+    ManagedPolicyArns=[
+        "arn:aws:iam::aws:policy/AWSCodePipelineCustomActionAccess"
     ]
 ))
 
@@ -68,12 +71,11 @@ userdata = userdata_from_file(
     userdata_template,
     references=userdata_references,
     constants=[
-        ('DbHost', ImportValue( Sub("${DbStack}-DbHost"))),
-        ('DbPort', ImportValue( Sub("${DbStack}-DbPort")))
+        ('DbHost', ImportValue(Sub("${DbStack}-DbHost"))),
+        ('DbPort', ImportValue(Sub("${DbStack}-DbPort")))
 
     ]
 )
-
 
 instance = t.add_resource(ec2.Instance(
     "Instance",
