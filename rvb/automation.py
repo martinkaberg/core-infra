@@ -28,10 +28,7 @@ def metadata(backup_bucket, mount_point, mount_cmd, **kwargs):
                         'git': []
                     }
                 },
-                # sources={
-                #     '/opt': "https://s3-us-west-2.amazonaws.com/rvbgo-s3bucket-10utfkgtekakz/go_server/backups/config/backup_20161012-110103.tgz"
-                #
-                # },
+
 
                 commands={
                     'create_mount_point': {
@@ -40,18 +37,6 @@ def metadata(backup_bucket, mount_point, mount_cmd, **kwargs):
                             "PATH": "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aws/bin:/root/bin"
                         }
                     },
-                    # 'download_backup': {
-                    #     'command': Join("", [
-                    #         'aws --region ',
-                    #         Ref("AWS::Region"),
-                    #         " s3 cp s3://",
-                    #         backup_bucket,
-                    #         "/go_server/backups/config/backup_20161012-110103.tgz /opt"
-                    #     ]),
-                    #     'env': {
-                    #         "PATH": "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aws/bin:/root/bin"
-                    #     }
-                    # }
                 }
             ),
 
